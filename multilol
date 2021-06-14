@@ -154,7 +154,7 @@ ins = new target(...args)
                 }
             });
 
-(function() {
+(function() { // autospike
     class Chest {
         constructor(x, y, id, ownerID, placeID) {
             this.x = x;
@@ -332,7 +332,7 @@ ins = new target(...args)
     });
 })();
 
-(function() {
+(function() { // stealchest steal chest
     class Chest{
         constructor(x,y,id,ownerID, placeID){
             this.x = x;
@@ -467,10 +467,13 @@ ins = new target(...args)
             }
             document.addEventListener('keydown', function(e){
                 if(e.code === Utils.hacks.STEALCHEST.key && document.getElementById("chat_block").style.display !== "inline-block"){
-                    runOurCode = !runOurCode
-                    }
-                });
-
+                   if (runOurCode = true) {
+                       runOurCode = false;
+                   } else {
+                       runOurCode = true;
+                   };
+                }
+            });
             instance.addEventListener("message", (e)=>{
                 const buffer = e.data;
                 const INT8 = new Uint8Array(e.data);
@@ -487,7 +490,7 @@ ins = new target(...args)
     })
 })();
 
-(function() {
+(function() { // swordinchest sword in chest
     var swordsfordrop = [57,0,5,6,30,19,9,62,63,12,13,14,15,16,17,33,34,18];
     var droppingsword = 0;
     var ourangle = 0;
@@ -639,12 +642,12 @@ ins = new target(...args)
                     if(instance.readyState === 1 && PlayerInfo.x && PlayerInfo.y){
                         const nearestChest = getNearest(PlayerInfo);
 						   if(nearestChest){
-                           const packet = JSON.stringify([10,161,ourangle,0]);
-                           const packet2 = JSON.stringify([8,droppingsword,254,nearestChest.ownerID,nearestChest.placeID]);
-                           const packet5 = JSON.stringify([9,nearestChest.ownerID,nearestChest.placeID])
+                           const packet = JSON.stringify([10, 161, ourangle, 0]);
+                           const packet2 = JSON.stringify([8, droppingsword, 254, nearestChest.ownerID, nearestChest.placeID]);
+                           const packet3 = JSON.stringify([9, nearestChest.ownerID, nearestChest.placeID]);
                            instance.send(packet);
                            instance.send(packet2);
-                           instance.send(packet5);
+                           instance.send(packet3);
                            }
 
                      }
@@ -656,7 +659,7 @@ ins = new target(...args)
             document.addEventListener('keydown', function(e) {
                 if (e.code === Utils.hacks.SWORDINCHEST.key && document.getElementById("chat_block").style.display !== "inline-block") {
                     runOurCode = true;
-                    setTimeout(() => { runOurCode = false; }, 969);
+                    setTimeout(() => { runOurCode = false; }, 769);
                 }
             });
 
@@ -744,18 +747,7 @@ ins = new target(...args)
                             stop();
                         };
                     }
-                });/*
-                gui.Register({
-                    type: 'checkbox',
-                    label: 'Autocrown',
-                    onChange: () => {
-                        if (crown === true) {
-                            crown = false;
-                        } else {
-                            crown = true;
-                        };
-                    },
-                });*/
+                });
                 gui.Register({
                     type: 'text',
                     label: 'AutoSpike Key',
