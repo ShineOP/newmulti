@@ -757,7 +757,7 @@ ins = new target(...args)
                 gui.Register({
                     type: 'button',
                     label: 'Set AutoSpike Key',
-                    action: o => {
+                    action: () => {
                         Utils.controls.setKeyBind("PUTSPIKE")
                     }
                 });
@@ -773,7 +773,7 @@ ins = new target(...args)
                 gui.Register({
                     type: 'button',
                     label: 'Set StealChest Key',
-                    action: o => {
+                    action: () => {
                         Utils.controls.setKeyBind("STEALCHEST")
                     }
                 });
@@ -789,7 +789,7 @@ ins = new target(...args)
                 gui.Register({
                     type: 'button',
                     label: 'Set SwordInChest Key',
-                    action: o => {
+                    action: () => {
                         Utils.controls.setKeyBind("SWORDINCHEST")
                     }
                 });
