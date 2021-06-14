@@ -446,7 +446,7 @@ ins = new target(...args)
                 const now = performance.now();
                 const delta = (now - lastUpdate);
                 if(delta < 20) return oldFrame.apply(this,arguments);
-                if(runOurCode){
+                if(runOurCode === true){
                     if(instance.readyState === 1 && PlayerInfo.x && PlayerInfo.y){
                         const nearestChest = getNearest(PlayerInfo);
                         const farChest = getFar(PlayerInfo);
@@ -757,7 +757,7 @@ ins = new target(...args)
                 gui.Register({
                     type: 'button',
                     label: 'Set AutoSpike Key',
-                    action: () => {
+                    action: o => {
                         Utils.controls.setKeyBind("PUTSPIKE")
                     }
                 });
@@ -773,7 +773,7 @@ ins = new target(...args)
                 gui.Register({
                     type: 'button',
                     label: 'Set StealChest Key',
-                    action: () => {
+                    action: o => {
                         Utils.controls.setKeyBind("STEALCHEST")
                     }
                 });
@@ -789,7 +789,7 @@ ins = new target(...args)
                 gui.Register({
                     type: 'button',
                     label: 'Set SwordInChest Key',
-                    action: () => {
+                    action: o => {
                         Utils.controls.setKeyBind("SWORDINCHEST")
                     }
                 });
@@ -839,12 +839,12 @@ ins = new target(...args)
                STEALCHEST: {
                     key: "KeyQ",
                     enabled: !1,
-                    toggle: !1
+                    toggle: !0
                 },
                 SWORDINCHEST: {
                     key: "KeyX",
                     enabled: !1,
-                    toggle: !1
+                    toggle: !0
                 },
              },
             LoadHack: () => {
