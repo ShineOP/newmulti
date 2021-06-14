@@ -332,7 +332,7 @@ ins = new target(...args)
     });
 })();
 
-(function() { // stealchest steal chest
+(function() {
     class Chest{
         constructor(x,y,id,ownerID, placeID){
             this.x = x;
@@ -467,13 +467,10 @@ ins = new target(...args)
             }
             document.addEventListener('keydown', function(e){
                 if(e.code === Utils.hacks.STEALCHEST.key && document.getElementById("chat_block").style.display !== "inline-block"){
-                   if (runOurCode = true) {
-                       runOurCode = false;
-                   } else {
-                       runOurCode = true;
-                   };
-                }
-            });
+                    runOurCode = !runOurCode
+                    }
+                });
+
             instance.addEventListener("message", (e)=>{
                 const buffer = e.data;
                 const INT8 = new Uint8Array(e.data);
