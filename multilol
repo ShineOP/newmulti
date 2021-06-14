@@ -446,7 +446,7 @@ ins = new target(...args)
                 const now = performance.now();
                 const delta = (now - lastUpdate);
                 if(delta < 20) return oldFrame.apply(this,arguments);
-                if(runOurCode){
+                if(runOurCode === true){
                     if(instance.readyState === 1 && PlayerInfo.x && PlayerInfo.y){
                         const nearestChest = getNearest(PlayerInfo);
                         const farChest = getFar(PlayerInfo);
@@ -833,18 +833,18 @@ ins = new target(...args)
              hacks: {
                 PUTSPIKE: {
                     key: "KeyC",
-                    enabled: !1,
+                    enabled: !0,
                     toggle: !1
                 },
                STEALCHEST: {
                     key: "KeyQ",
                     enabled: !1,
-                    toggle: !1
+                    toggle: !0
                 },
                 SWORDINCHEST: {
                     key: "KeyX",
                     enabled: !1,
-                    toggle: !1
+                    toggle: !0
                 },
              },
             LoadHack: () => {
