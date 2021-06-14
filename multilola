@@ -94,7 +94,7 @@ let hitbool = false;
 let hitinterval;
 let autohit;
 let msgs = [
-"your noob", "so bad bro", "get good", "your actual dog$hit", "f ucking b itch",
+"", "your noob", "so bad bro", "get good", "your actual dog$hit", "f ucking b itch",
 "kill yourself loser", "pu$$yass motherf ucker", "so bad me above u"
 ];
 let stop;
