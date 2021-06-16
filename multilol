@@ -297,11 +297,11 @@ ins = new target(...args)
                     instance.send(PACKET4);
                     instance.send(PACKET5);
                 } else if (runOurCode === true && ShineSpike === true && instance.readyState === 1 && PlayerInfo.x && PlayerInfo.y) {
-                    const PACKET1 = JSON.stringify([10, 213, ourangle + 15, 0]);
-                    const PACKET2 = JSON.stringify([10, 117, ourangle + 15, 0]);
-                    const PACKET3 = JSON.stringify([10, 164, ourangle + 15, 0]);
-                    const PACKET4 = JSON.stringify([10, 163, ourangle + 15, 0]);
-                    const PACKET5 = JSON.stringify([10, 156, ourangle + 15, 0]);
+                    const PACKET1 = JSON.stringify([10, 213, ourangle + 25, 0]);
+                    const PACKET2 = JSON.stringify([10, 117, ourangle + 25, 0]);
+                    const PACKET3 = JSON.stringify([10, 164, ourangle + 25, 0]);
+                    const PACKET4 = JSON.stringify([10, 163, ourangle + 25, 0]);
+                    const PACKET5 = JSON.stringify([10, 156, ourangle + 25, 0]);
                     let secondangle = ourangle - 25;
                     if (secondangle < 0) {
                         secondangle = secondangle + 254;
