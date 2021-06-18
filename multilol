@@ -150,7 +150,7 @@ ins = new target(...args)
 
             document.addEventListener('keydown', function(e) {
                 if (e.code === Utils.hacks.AUTOHIT.key && document.getElementById("chat_block").style.display !== "inline-block") {
-                    hitbool = !hitbool;
+                    hitchange();
                     check();
                 }
             });
@@ -297,12 +297,12 @@ ins = new target(...args)
                     instance.send(PACKET4);
                     instance.send(PACKET5);
                 } else if (runOurCode === true && ShineSpike === true && instance.readyState === 1 && PlayerInfo.x && PlayerInfo.y) {
-                    const PACKET1 = JSON.stringify([10, 213, ourangle + 25, 0]);
-                    const PACKET2 = JSON.stringify([10, 117, ourangle + 25, 0]);
-                    const PACKET3 = JSON.stringify([10, 164, ourangle + 25, 0]);
-                    const PACKET4 = JSON.stringify([10, 163, ourangle + 25, 0]);
-                    const PACKET5 = JSON.stringify([10, 156, ourangle + 25, 0]);
-                    let secondangle = ourangle - 25;
+                    const PACKET1 = JSON.stringify([10, 213, ourangle + 21, 0]);
+                    const PACKET2 = JSON.stringify([10, 117, ourangle + 21, 0]);
+                    const PACKET3 = JSON.stringify([10, 164, ourangle + 21, 0]);
+                    const PACKET4 = JSON.stringify([10, 163, ourangle + 21, 0]);
+                    const PACKET5 = JSON.stringify([10, 156, ourangle + 21, 0]);
+                    let secondangle = ourangle - 21;
                     if (secondangle < 0) {
                         secondangle = secondangle + 254;
                     };
@@ -723,8 +723,29 @@ ins = new target(...args)
         apply: function(target, scope, args){
             if(typeof(args[0])==='string'){
                 let json = JSON.parse(args[0]);
-		if (book === true && json[0] === 7) {
+		if (book === true && json[0] === 7 || book === true && json[0] === 29) { // 7 is craft, 29 is recycle
                     target.apply(scope,[`[5,28]`]);
+	      }
+            }
+            let data = target.apply(scope,args);
+            return data;
+        }
+    })
+})();/*
+let AutoCraft = false;
+let AutoRecycle = false;
+
+(function() {
+    'use strict';
+    WebSocket.prototype.send = new Proxy(WebSocket.prototype.send, {
+        apply: function(target, scope, args){
+            if(typeof(args[0])==='string'){
+                let json = JSON.parse(args[0]);
+		if (json[0] === 7 && AutoCraft === true) {
+            let thing = json[1];
+            setInterval(() => {
+                    target.apply(scope,[`[7, ${thing}]`]);
+            }, 500);
 	      }
             }
             let data = target.apply(scope,args);
@@ -733,6 +754,25 @@ ins = new target(...args)
     })
 })();
 
+(function() {
+    'use strict';
+    WebSocket.prototype.send = new Proxy(WebSocket.prototype.send, {
+        apply: function(target, scope, args){
+            if(typeof(args[0])==='string'){
+                let json = JSON.parse(args[0]);
+		if (json[0] === 7 && AutoRecycle === true) {
+            let thinga = json[1];
+            setInterval(() => {
+                    target.apply(scope,[`[29, ${thinga}]`]);
+            }, 500);
+	      }
+            }
+            let data = target.apply(scope,args);
+            return data;
+        }
+    })
+})();
+*/
         const To = {
             name: "Shine",
             colors: {
@@ -794,7 +834,21 @@ ins = new target(...args)
                     onChange: () => {
                         ShineSpike = !ShineSpike;
                     }
+                });/*
+                gui.Register({
+                    type: 'checkbox',
+                    label: 'AutoCraft',
+                    onChange: () => {
+                        AutoCraft = !AutoCraft;
+                    }
                 });
+                gui.Register({
+                    type: 'checkbox',
+                    label: 'AutoRecycle',
+                    onChange: () => {
+                        AutoRecycle = !AutoRecycle;
+                    }
+                });*/
                 gui.Register({
                     type: 'text',
                     label: 'AutoHit Key',
