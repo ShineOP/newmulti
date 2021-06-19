@@ -843,11 +843,11 @@ ins = new target(...args)
                             const PACKET2 = JSON.stringify([17, farChest.ownerID, farChest.placeID]) // ressurrect arrays
                             const PACKET3 = JSON.stringify([17, far2Chest.ownerID, farChest.placeID])
                             const PACKET4 = JSON.stringify([5, 79]) // equip crown
-                            const PACKET5 = JSON.stringify([5, 39]) //equip reidite hammer
-                            const PACKET6 = JSON.stringify([5, 38]) // equip ame hammer
+                            const PACKET5 = JSON.stringify([5, 35]) // equip reidite hammer
+                            const PACKET6 = JSON.stringify([5, 36]) // equip ame hammer
                             const PACKET7 = JSON.stringify([5, 37]) // equip dia hammer
-                            const PACKET8 = JSON.stringify([5, 36]) // equip gold hammer
-                            const PACKET9 = JSON.stringify([5, 35]) // equip stone hammer
+                            const PACKET8 = JSON.stringify([5, 38]) // equip gold hammer
+                            const PACKET9 = JSON.stringify([5, 39]) // equip stone hammer
 
                             instance.send(PACKET);
                             instance.send(PACKET2);
@@ -866,7 +866,7 @@ ins = new target(...args)
                 return oldFrame.apply(this, arguments)
             }
             document.addEventListener('keydown', function (e) {
-                if (e.code === "KeyV" && document.getElementById("chat_block").style.display !== "inline-block") {
+                if (e.code === Utils.hacks.AUTOCROWN.key && document.getElementById("chat_block").style.display !== "inline-block") {
                         runOurCode = !runOurCode;
                 }
             });
@@ -894,7 +894,7 @@ ins = new target(...args)
         apply: function(target, scope, args){
             if(typeof(args[0])==='string'){
                 let json = JSON.parse(args[0]);
-		if (book === true && json[0] === 7 || book === true && json[0] === 29) { // 7 is craft, 29 is recycle
+		if (json[0] === 7 && book === true) { // 7 is craft, 29 is recycle
                     target.apply(scope,[`[5,28]`]);
 	      }
             }
@@ -1144,18 +1144,12 @@ let tal;
              hacks: {
                 PUTSPIKE: {
                     key: "KeyC",
-                    enabled: !1,
-                    toggle: !1
                 },
                STEALCHEST: {
                     key: "KeyQ",
-                    enabled: !1,
-                    toggle: !1
                 },
                 SWORDINCHEST: {
                     key: "KeyX",
-                    enabled: !1,
-                    toggle: !1
                 },
                  AUTOHIT: {
                      key: "KeyE"
