@@ -46,7 +46,7 @@ document.getElementById("FPSS").style.display = "none";
 }
 };
 
-document.getElementById("ad_content_market").opacity = 0;
+document.getElementById("ad_content_market").style.visibility = "hidden";
 document.getElementById("oibio_banner").remove();
 
 let canvas = document.getElementById("game_canvas");
@@ -1032,6 +1032,7 @@ let tal;
                     label: 'Panels transparency',
 		    min: 0,
 		    max: 1,
+		    step: 0.05,
                     onChange: o => {
                         document.getElementById("shop_market").opacity = o;
                         document.getElementById("option_in_game").opacity = o;
